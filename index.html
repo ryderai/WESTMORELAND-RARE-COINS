@@ -34,7 +34,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001s!important;transition-duration:.001s!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.001s!important}.ticker-inner,.band-inner,.coin-shine,.dot{animation:none!important}[data-r]{opacity:1!important;transform:none!important}}
 body{background:var(--bg);color:var(--white);font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:var(--gold);color:#0A2342}
 a{color:inherit;text-decoration:none}
@@ -47,11 +47,11 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 /* ticker */
 .ticker{background:#071A33;border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;font-size:.68rem;letter-spacing:.08em;padding:8px 0;text-transform:uppercase;font-weight:600}
-.ticker-inner{display:inline-block;animation:tick 46s linear infinite}
+.ticker-inner{display:inline-block;animation:tick 46s linear infinite;will-change:transform;backface-visibility:hidden}
 .ticker span{margin:0 28px;color:var(--mut)}
 .ticker b{color:var(--white);font-weight:700}
 .ticker .u{color:#41d98d}
-@keyframes tick{to{transform:translateX(-50%)}}
+@keyframes tick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
 /* nav */
 nav{position:sticky;top:0;z-index:200;background:rgba(10,35,66,.85);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
@@ -132,7 +132,7 @@ box-shadow:inset 0 0 0 8px rgba(255,255,255,.14),inset 0 0 0 20px rgba(100,75,8,
 
 /* marquee */
 .band{background:var(--gold);color:#0A2342;overflow:hidden;white-space:nowrap;transform:rotate(-1.4deg) scale(1.02);margin:30px 0;border-top:2px solid #0A2342;border-bottom:2px solid #0A2342}
-.band-inner{display:inline-block;animation:tick 30s linear infinite;padding:12px 0;font-weight:800;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase}
+.band-inner{display:inline-block;animation:tick 40s linear infinite;padding:12px 0;font-weight:800;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;will-change:transform;backface-visibility:hidden}
 .band-inner span{margin:0 22px}.band-inner i{font-style:normal;margin:0 22px}
 
 /* ===== MARKET DESK ===== */
@@ -358,6 +358,7 @@ footer{border-top:1px solid var(--line);padding:70px 0 120px;position:relative;o
   .ebay-hero{grid-template-columns:1fr}
   .buy-row{grid-template-columns:44px 1fr 30px;grid-template-areas:"n t a" ". d a"}
   .buy-row .n{grid-area:n}.buy-row h3{grid-area:t}.buy-row p{grid-area:d}.buy-row .ar{grid-area:a}
+  .band{transform:none;margin:24px 0}
   .nav-links{display:none}
   .burger{display:block}
   .callbar{display:block}
